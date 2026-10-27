@@ -22,6 +22,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useJobs } from "../../context/JobContext";
 import { useLanguage } from "../../context/LanguageContext";
 import { jobCategories } from "../../services/translations";
+import { IMAGES, handleImageError } from "../../services/images";
 
 export const EmployerDashboard = ({ onOpenDetail, onReportJob }) => {
   const { currentUser, updateProfile } = useAuth();
@@ -136,8 +137,16 @@ export const EmployerDashboard = ({ onOpenDetail, onReportJob }) => {
         {/* Welcome Header */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 text-white font-black text-2xl flex items-center justify-center shadow-lg shadow-brand-600/20">
-              <Building2 className="w-8 h-8" />
+            <div className="relative">
+              <img
+                src={currentUser?.avatar || IMAGES.employers.rajeshSharma}
+                alt={currentUser?.companyName || "Contractor"}
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover object-center border-2 border-brand-500 shadow-lg shadow-brand-600/20"
+                onError={handleImageError}
+              />
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center border-2 border-white shadow-xs">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+              </div>
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -233,37 +242,52 @@ export const EmployerDashboard = ({ onOpenDetail, onReportJob }) => {
                 return (
                   <div
                     key={job.id}
-                    className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between"
+                    className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
                   >
                     <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className={`px-2.5 py-0.5 text-[10px] font-black uppercase rounded-full ${
-                          job.status === "active"
-                            ? "bg-emerald-100 text-emerald-800"
-                            : "bg-slate-100 text-slate-700"
-                        }`}>
-                          {job.status}
-                        </span>
-                        <span className="text-xs font-bold text-brand-700">₹{job.dailyWage}/day</span>
-                      </div>
-
-                      <h3 className="text-base font-extrabold text-slate-900 line-clamp-2">
-                        {job.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 mt-1 line-clamp-1">
-                        {job.location}
-                      </p>
-
-                      <div className="my-4 p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between text-xs">
-                        <div>
-                          <span className="text-slate-400 block text-[10px] font-bold uppercase">Required</span>
-                          <span className="font-extrabold text-slate-800">{job.workersNeeded} Workers</span>
-                        </div>
-                        <div className="text-right">
-                          <span className="text-slate-400 block text-[10px] font-bold uppercase">Received</span>
-                          <span className="font-extrabold text-brand-600">{jobApplicantsCount} Applicants</span>
+                      {/* Job Trade Thumbnail */}
+                      <div className="relative h-36 w-full overflow-hidden bg-slate-100">
+                        <img
+                          src={job.imageUrl || IMAGES.categories[job.category] || IMAGES.jobs.masonryVilla}
+                          alt={job.title}
+                          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                          onError={(e) => handleImageError(e, IMAGES.fallbackPlaceholder)}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                          <span className={`px-2.5 py-0.5 text-[10px] font-black uppercase rounded-full shadow-sm ${
+                            job.status === "active"
+                              ? "bg-emerald-600 text-white"
+                              : "bg-slate-700 text-white"
+                          }`}>
+                            {job.status}
+                          </span>
+                          <span className="px-2.5 py-0.5 text-xs font-black bg-white/95 text-brand-800 rounded-full shadow-sm">
+                            ₹{job.dailyWage}/day
+                          </span>
                         </div>
                       </div>
+
+                      <div className="p-5">
+                        <h3 className="text-base font-extrabold text-slate-900 line-clamp-2 leading-snug">
+                          {job.title}
+                        </h3>
+                        <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+                          {job.location}
+                        </p>
+
+                        <div className="my-3.5 p-3 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between text-xs">
+                          <div>
+                            <span className="text-slate-400 block text-[10px] font-bold uppercase">Required</span>
+                            <span className="font-extrabold text-slate-800">{job.workersNeeded} Workers</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-slate-400 block text-[10px] font-bold uppercase">Received</span>
+                            <span className="font-extrabold text-brand-600">{jobApplicantsCount} Applicants</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     </div>
 
                     <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
@@ -344,17 +368,24 @@ export const EmployerDashboard = ({ onOpenDetail, onReportJob }) => {
                     key={app.id}
                     className="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6"
                   >
-                    {/* Worker Info */}
-                    <div className="space-y-2 max-w-xl">
-                      <div className="flex items-center gap-2">
-                        <span className="font-extrabold text-base text-slate-900">{app.workerName}</span>
-                        <span className="px-2 py-0.5 text-xs font-extrabold bg-emerald-100 text-emerald-800 rounded-md">
-                          {app.matchScore}% Skill Match
-                        </span>
-                        <span className="text-xs text-slate-400">
-                          Applied: {new Date(app.appliedAt).toLocaleDateString()}
-                        </span>
-                      </div>
+                    {/* Worker Info with Portrait */}
+                    <div className="flex items-start gap-4 max-w-xl">
+                      <img
+                        src={app.workerAvatar || IMAGES.workers.rameshKumar}
+                        alt={app.workerName}
+                        className="w-14 h-14 rounded-2xl object-cover object-center border-2 border-emerald-500 shadow-sm shrink-0 mt-1"
+                        onError={handleImageError}
+                      />
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-extrabold text-base text-slate-900">{app.workerName}</span>
+                          <span className="px-2 py-0.5 text-xs font-extrabold bg-emerald-100 text-emerald-800 rounded-md">
+                            {app.matchScore}% Skill Match
+                          </span>
+                          <span className="text-xs text-slate-400">
+                            Applied: {new Date(app.appliedAt).toLocaleDateString()}
+                          </span>
+                        </div>
 
                       <p className="text-xs text-brand-700 font-semibold">
                         Applied for: {app.jobTitle}
@@ -391,6 +422,7 @@ export const EmployerDashboard = ({ onOpenDetail, onReportJob }) => {
                           "{app.workerNote}"
                         </div>
                       )}
+                      </div>
                     </div>
 
                     {/* Status Changer Actions */}
@@ -689,10 +721,28 @@ export const EmployerDashboard = ({ onOpenDetail, onReportJob }) => {
 
         {/* TAB 4: EMPLOYER PROFILE */}
         {activeTab === "profile" && (
-          <div className="max-w-3xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
-            <h2 className="text-lg font-black text-slate-900 pb-3 border-b border-slate-100 mb-6">
-              Contractor & Business Details
-            </h2>
+          <div className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
+            <div className="flex items-center gap-4 pb-6 border-b border-slate-100 mb-6">
+              <img
+                src={currentUser?.avatar || IMAGES.employers.rajeshSharma}
+                alt="Contractor Profile"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover object-center border-2 border-brand-500 shadow-md shrink-0"
+                onError={handleImageError}
+              />
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-lg sm:text-xl font-black text-slate-900">
+                    {currentUser?.companyName || "Sharma Infrastructure & Projects"}
+                  </h2>
+                  <span className="px-2 py-0.5 text-xs font-bold bg-brand-100 text-brand-800 rounded-md">
+                    GST Active
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Contractor ID: {currentUser?.id || "employer-demo-1"} • Civil Contractor & Site Renovation
+                </p>
+              </div>
+            </div>
 
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

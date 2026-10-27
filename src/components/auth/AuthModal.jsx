@@ -16,6 +16,7 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import { useLanguage } from "../../context/LanguageContext";
 import { jobCategories } from "../../services/translations";
+import { IMAGES, handleImageError } from "../../services/images";
 
 export const AuthModal = ({ isOpen, onClose, initialRole = "worker", initialMode = "demo" }) => {
   const { loginAsDemo, loginUser, registerUser, authError } = useAuth();
@@ -180,9 +181,12 @@ export const AuthModal = ({ isOpen, onClose, initialRole = "worker", initialMode
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-emerald-600/20">
-                      R
-                    </div>
+                    <img
+                      src={IMAGES.workers.rameshKumar}
+                      alt="Ramesh Kumar"
+                      className="w-12 h-12 rounded-xl object-cover object-center border-2 border-emerald-500 shadow-md"
+                      onError={handleImageError}
+                    />
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-slate-800 text-sm">Ramesh Kumar</span>
@@ -206,9 +210,12 @@ export const AuthModal = ({ isOpen, onClose, initialRole = "worker", initialMode
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-brand-600/20">
-                      S
-                    </div>
+                    <img
+                      src={IMAGES.employers.rajeshSharma}
+                      alt="Sharma Infrastructure"
+                      className="w-12 h-12 rounded-xl object-cover object-center border-2 border-brand-500 shadow-md"
+                      onError={handleImageError}
+                    />
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-slate-800 text-sm">Sharma Infrastructure</span>

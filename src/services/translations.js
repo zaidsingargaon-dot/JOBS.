@@ -233,18 +233,20 @@ export const translations = {
   }
 };
 
+import { IMAGES } from "./images";
+
 export const jobCategories = [
-  { id: "construction", en: "Construction & Masonry", hi: "निर्माण एवं राजमिस्त्री", kn: "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಮತ್ತು ಮೇಸ್ತ್ರಿ ಕೆಲಸ", icon: "HardHat", minWage: 650 },
-  { id: "painting", en: "Painting & Whitewash", hi: "पेंटिंग और रंगाई-पुताई", kn: "ಪೇಂಟಿಂಗ್ ಮತ್ತು ಬಣ್ಣದ ಕೆಲಸ", icon: "Paintbrush", minWage: 700 },
-  { id: "plumbing", en: "Plumbing & Piping", hi: "नलसाजी और प्लंबिंग", kn: "ಪ್ಲಂಬಿಂಗ್ ಮತ್ತು ಪೈಪ್ ಕೆಲಸ", icon: "Wrench", minWage: 750 },
-  { id: "carpentry", en: "Carpentry & Woodwork", hi: "बढ़ईगीरी और लकड़ी का काम", kn: "ಬಡಗಿ ಮತ್ತು ಮರದ ಕೆಲಸ", icon: "Hammer", minWage: 800 },
-  { id: "electrical", en: "Electrical & Wiring", hi: "इलेक्ट्रिकल और वायरिंग", kn: "ವಿದ್ಯುತ್ ಮತ್ತು ವೈರಿಂಗ್ ಕೆಲಸ", icon: "Zap", minWage: 850 },
-  { id: "loading", en: "Loading, Unloading & Moving", hi: "लोडिंग, अनलोडिंग और हम्माली", kn: "ಲೋಡಿಂಗ್ ಮತ್ತು ಸರಕು ಸಾಗಣೆ", icon: "Truck", minWage: 600 },
-  { id: "gardening", en: "Gardening & Agriculture", hi: "बागवानी और खेती का काम", kn: "ತೋಟಗಾರಿಕೆ ಮತ್ತು ಕೃಷಿ ಕೆಲಸ", icon: "Sprout", minWage: 550 },
-  { id: "housekeeping", en: "Cleaning & Housekeeping", hi: "सफाई और घरेलू काम", kn: "ಸ್ವಚ್ಛತೆ ಮತ್ತು ಮನೆಗೆಲಸ", icon: "Sparkles", minWage: 500 },
-  { id: "welding", en: "Welding & Fabrication", hi: "वेल्डिंग और लोहार का काम", kn: "ವೆಲ್ಡಿಂಗ್ ಮತ್ತು ಕಮ್ಮಾರಿಕೆ", icon: "Flame", minWage: 850 },
-  { id: "driving", en: "Commercial Driving & Delivery", hi: "ड्राइविंग और डिलीवरी", kn: "ಚಾಲನೆ ಮತ್ತು ಡೆಲಿವರಿ", icon: "Navigation", minWage: 700 },
-  { id: "security", en: "Security & Guarding", hi: "सुरक्षा गार्ड", kn: "ಭದ್ರತಾ ಸಿಬ್ಬಂದಿ", icon: "Shield", minWage: 600 },
-  { id: "helper", en: "General Helper / Labour", hi: "सामान्य सहायक / मजदूर", kn: "ಸಾಮಾನ್ಯ ಸಹಾಯಕ / ಕೂಲಿ", icon: "Users", minWage: 500 }
+  { id: "construction", en: "Construction & Masonry", hi: "निर्माण एवं राजमिस्त्री", kn: "ಕಟ್ಟಡ ನಿರ್ಮಾಣ ಮತ್ತು ಮೇಸ್ತ್ರಿ ಕೆಲಸ", icon: "HardHat", minWage: 650, imageUrl: IMAGES.categories.construction },
+  { id: "painting", en: "Painting & Whitewash", hi: "पेंटिंग और रंगाई-पुताई", kn: "ಪೇಂಟಿಂಗ್ ಮತ್ತು ಬಣ್ಣದ ಕೆಲಸ", icon: "Paintbrush", minWage: 700, imageUrl: IMAGES.categories.painting },
+  { id: "plumbing", en: "Plumbing & Piping", hi: "नलसाजी और प्लंबिंग", kn: "ಪ್ಲಂಬಿಂಗ್ ಮತ್ತು ಪೈಪ್ ಕೆಲಸ", icon: "Wrench", minWage: 750, imageUrl: IMAGES.categories.plumbing },
+  { id: "carpentry", en: "Carpentry & Woodwork", hi: "बढ़ईगीरी और लकड़ी का काम", kn: "ಬಡಗಿ ಮತ್ತು ಮರದ ಕೆಲಸ", icon: "Hammer", minWage: 800, imageUrl: IMAGES.categories.carpentry },
+  { id: "electrical", en: "Electrical & Wiring", hi: "इलेक्ट्रिकल और वायरिंग", kn: "ವಿದ್ಯುತ್ ಮತ್ತು ವೈರಿಂಗ್ ಕೆಲಸ", icon: "Zap", minWage: 850, imageUrl: IMAGES.categories.electrical },
+  { id: "loading", en: "Loading, Unloading & Moving", hi: "लोडिंग, अनलोडिंग और हम्माली", kn: "ಲೋಡಿಂಗ್ ಮತ್ತು ಸರಕು ಸಾಗಣೆ", icon: "Truck", minWage: 600, imageUrl: IMAGES.categories.loading },
+  { id: "gardening", en: "Gardening & Agriculture", hi: "बागवानी और खेती का काम", kn: "ತೋಟಗಾರಿಕೆ ಮತ್ತು ಕೃಷಿ ಕೆಲಸ", icon: "Sprout", minWage: 550, imageUrl: IMAGES.categories.gardening },
+  { id: "housekeeping", en: "Cleaning & Housekeeping", hi: "सफाई और घरेलू काम", kn: "ಸ್ವಚ್ಛತೆ ಮತ್ತು ಮನೆಗೆಲಸ", icon: "Sparkles", minWage: 500, imageUrl: IMAGES.categories.housekeeping },
+  { id: "welding", en: "Welding & Fabrication", hi: "वेल्डिंग और लोहार का काम", kn: "ವೆಲ್ಡಿಂಗ್ ಮತ್ತು ಕಮ್ಮಾರಿಕೆ", icon: "Flame", minWage: 850, imageUrl: IMAGES.categories.welding },
+  { id: "driving", en: "Commercial Driving & Delivery", hi: "ड्राइविंग और डिलीवरी", kn: "ಚಾಲನೆ ಮತ್ತು ಡೆಲಿವರಿ", icon: "Navigation", minWage: 700, imageUrl: IMAGES.categories.driving },
+  { id: "security", en: "Security & Guarding", hi: "सुरक्षा गार्ड", kn: "ಭದ್ರತಾ ಸಿಬ್ಬಂದಿ", icon: "Shield", minWage: 600, imageUrl: IMAGES.categories.security },
+  { id: "helper", en: "General Helper / Labour", hi: "सामान्य सहायक / मजदूर", kn: "ಸಾಮಾನ್ಯ ಸಹಾಯಕ / ಕೂಲಿ", icon: "Users", minWage: 500, imageUrl: IMAGES.categories.helper }
 ];
 

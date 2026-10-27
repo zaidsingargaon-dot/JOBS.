@@ -20,6 +20,8 @@ import { useJobs } from "../../context/JobContext";
 import { useAuth } from "../../context/AuthContext";
 import { AudioHelper } from "../common/AudioHelper";
 
+import { IMAGES, handleImageError } from "../../services/images";
+
 export const JobDetailModal = ({ 
   isOpen, 
   onClose, 
@@ -78,29 +80,56 @@ export const JobDetailModal = ({
   };
 
   const audioSummary = `${job.title} at ${job.location}. Daily wage is ${job.dailyWage} rupees. Required skills are ${job.requiredSkills.join(", ")}. Description: ${job.description}`;
+  const jobThumbnail = job.imageUrl || IMAGES.categories[job.category] || IMAGES.jobs.masonryVilla;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
       <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[92vh]">
         
-        {/* Header */}
-        <div className="px-6 py-4 bg-gradient-to-r from-brand-600 to-brand-700 text-white flex items-start justify-between">
-          <div className="pr-4">
+        {/* Photographic Header Banner */}
+        <div className="relative h-48 sm:h-52 w-full bg-slate-900 overflow-hidden shrink-0">
+          <img
+            src={jobThumbnail}
+            alt={job.title}
+            className="w-full h-full object-cover object-center"
+            onError={(e) => handleImageError(e, IMAGES.fallbackPlaceholder)}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-black/40" />
+
+          {/* Top Actions */}
+          <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+            <span className="px-3 py-1 text-xs font-extrabold uppercase tracking-wider bg-white/20 backdrop-blur-md rounded-xl text-white border border-white/20">
+              {job.categoryLabel || "Daily Wage Job"}
+            </span>
+
+            <div className="flex items-center gap-2">
+              <AudioHelper textToRead={audioSummary} className="bg-white/90 text-slate-900 border-none shadow-md" />
+              <button
+                onClick={onClose}
+                className="p-1.5 text-white/90 hover:text-white bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Title & Employer at Bottom of Banner */}
+          <div className="absolute bottom-4 left-5 right-5 text-white">
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider bg-white/20 rounded-md text-white">
-                {job.categoryLabel || "Daily Wage Job"}
-              </span>
               {job.isSample && (
                 <span className="px-2 py-0.5 text-[10px] font-extrabold uppercase bg-amber-400 text-slate-950 rounded-md">
                   {t("sampleDataBadge")}
                 </span>
               )}
+              <span className="px-2 py-0.5 text-[10px] font-black uppercase bg-emerald-500 text-white rounded-md">
+                {matchScore}% Match
+              </span>
             </div>
-            <h2 className="text-lg sm:text-xl font-black text-white leading-snug">
+            <h2 className="text-lg sm:text-xl font-black text-white leading-snug drop-shadow-md">
               {job.title}
             </h2>
-            <p className="text-xs text-brand-100 mt-1 flex items-center gap-2">
-              <span>{job.employerName}</span>
+            <p className="text-xs text-slate-300 mt-1 flex items-center gap-2">
+              <span className="font-semibold text-white">{job.employerName}</span>
               {job.isEmployerVerified && (
                 <span className="inline-flex items-center gap-0.5 text-emerald-300 font-bold">
                   <CheckCircle2 className="w-3.5 h-3.5" />
@@ -108,16 +137,6 @@ export const JobDetailModal = ({
                 </span>
               )}
             </p>
-          </div>
-
-          <div className="flex items-center gap-2 shrink-0">
-            <AudioHelper textToRead={audioSummary} className="bg-white/20 text-white border-white/30" />
-            <button
-              onClick={onClose}
-              className="p-1.5 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
           </div>
         </div>
 

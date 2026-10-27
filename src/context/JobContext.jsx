@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { localStorageRepo } from "../services/firebase";
 import { initialJobs, sampleApplications, sampleReports } from "../services/sampleData";
+import { IMAGES } from "../services/images";
 import { useAuth } from "./AuthContext";
 
 const JobContext = createContext();
@@ -113,6 +114,7 @@ export const JobProvider = ({ children }) => {
       ...jobData,
       id: `job-${Date.now()}`,
       isSample: false, // Real posting
+      imageUrl: jobData.imageUrl || IMAGES.categories[jobData.category] || IMAGES.jobs.masonryVilla,
       employerId: currentUser?.id || "emp-anon",
       employerName: currentUser?.companyName || currentUser?.name || "Verified Contractor",
       employerContact: currentUser?.phone || "+91 98000 00000",
@@ -183,6 +185,7 @@ export const JobProvider = ({ children }) => {
       workerId: currentUser.id,
       workerName: currentUser.name,
       workerPhone: currentUser.phone,
+      workerAvatar: currentUser.avatar || IMAGES.workers.rameshKumar,
       workerSkills: currentUser.skills || [],
       dailyWage: job.dailyWage,
       status: "applied", // applied -> under_review -> shortlisted -> accepted -> rejected

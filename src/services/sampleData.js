@@ -1,8 +1,11 @@
 // Sample data clearly labeled as sample/demo data to comply with transparent development requirements
+import { IMAGES } from "./images";
+
 export const initialJobs = [
   {
     id: "job-sample-101",
     isSample: true, // Transparent indicator
+    imageUrl: IMAGES.jobs.masonryVilla,
     title: "Mason & Bricklayer for Residential Villa Construction",
     category: "construction",
     categoryLabel: "Construction & Masonry",
@@ -31,6 +34,7 @@ export const initialJobs = [
   {
     id: "job-sample-102",
     isSample: true,
+    imageUrl: IMAGES.jobs.interiorPainting,
     title: "Interior Painting & Whitewash Team Needed",
     category: "painting",
     categoryLabel: "Painting & Whitewash",
@@ -59,6 +63,7 @@ export const initialJobs = [
   {
     id: "job-sample-103",
     isSample: true,
+    imageUrl: IMAGES.jobs.bathroomPlumbing,
     title: "Pipeline Fitting & Bathroom Plumbing Assistant",
     category: "plumbing",
     categoryLabel: "Plumbing & Piping",
@@ -87,6 +92,7 @@ export const initialJobs = [
   {
     id: "job-sample-104",
     isSample: true,
+    imageUrl: IMAGES.jobs.warehouseLoading,
     title: "Warehouse Loading & Parcel Handling Crew",
     category: "loading",
     categoryLabel: "Loading, Unloading & Moving",
@@ -115,6 +121,7 @@ export const initialJobs = [
   {
     id: "job-sample-105",
     isSample: true,
+    imageUrl: IMAGES.jobs.commercialElectrical,
     title: "Commercial Site Electrical Conduit & Wiring Helper",
     category: "electrical",
     categoryLabel: "Electrical & Wiring",
@@ -143,6 +150,7 @@ export const initialJobs = [
   {
     id: "job-sample-106",
     isSample: true,
+    imageUrl: IMAGES.jobs.landscapeGarden,
     title: "Landscape Garden Maintenance & Lawn Trimming",
     category: "gardening",
     categoryLabel: "Gardening & Agriculture",
@@ -171,6 +179,7 @@ export const initialJobs = [
   {
     id: "job-sample-107",
     isSample: true,
+    imageUrl: IMAGES.jobs.furnitureCarpentry,
     title: "Wood Furniture Sanding & Carpentry Assembly Helper",
     category: "carpentry",
     categoryLabel: "Carpentry & Woodwork",
@@ -199,6 +208,7 @@ export const initialJobs = [
   {
     id: "job-sample-108",
     isSample: true,
+    imageUrl: IMAGES.jobs.metalWelding,
     title: "Arc Welder for Metal Gate & Railing Fabrication",
     category: "welding",
     categoryLabel: "Welding & Fabrication",
@@ -229,10 +239,11 @@ export const initialJobs = [
 export const sampleWorkers = [
   {
     id: "worker-demo-1",
-    name: "Ramesh Kumar (Demo Worker)",
+    name: "Ramesh Kumar",
+    tradeTitle: "Master Mason & Bricklayer",
     phone: "+91 98765 11223",
     role: "worker",
-    avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&auto=format&fit=crop&q=80",
+    avatar: IMAGES.workers.rameshKumar,
     locality: "Koramangala, Bengaluru",
     skills: ["Bricklaying", "Cement Plastering", "Foundation Work", "Wall Putty"],
     experienceYears: 4,
@@ -242,14 +253,17 @@ export const sampleWorkers = [
     bio: "Skilled mason with 4 years on-site experience in building walls, plastering, and tile groundwork. Hardworking, punctual, and available for daily wage or weekly projects.",
     verifiedAadhaar: true,
     isAvailable: true,
+    availabilityStatus: "Available Today",
+    isDemoProfile: true,
     languages: ["Hindi", "Kannada", "English"]
   },
   {
     id: "worker-demo-2",
     name: "Manjunatha B.",
+    tradeTitle: "Residential Plumber & Pipe Fitter",
     phone: "+91 98450 77665",
     role: "worker",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    avatar: IMAGES.workers.manjunathaB,
     locality: "Jayanagar, Bengaluru",
     skills: ["CPVC / PVC Piping", "Pipe Cutting", "Leakage Repair", "Drain Line Fitting"],
     experienceYears: 3,
@@ -259,15 +273,98 @@ export const sampleWorkers = [
     bio: "Experienced residential plumber specializing in quick fixes, bathroom pipeline installation, and sanitary fitting.",
     verifiedAadhaar: true,
     isAvailable: true,
+    availabilityStatus: "Available Today",
+    isDemoProfile: true,
     languages: ["Kannada", "English"]
+  },
+  {
+    id: "worker-demo-3",
+    name: "Sunita Devi",
+    tradeTitle: "Commercial Cleaner & Painter Assistant",
+    phone: "+91 98110 33445",
+    role: "worker",
+    avatar: IMAGES.workers.sunitaDevi,
+    locality: "BTM Layout, Bengaluru",
+    skills: ["Deep Cleaning", "Wall Putty Sanding", "Sanitization", "Housekeeping"],
+    experienceYears: 2,
+    expectedDailyWage: 600,
+    rating: 4.7,
+    completedJobsCount: 34,
+    bio: "Meticulous and reliable cleaning and painting assistant. Experienced in post-construction site clearing and residential upkeep.",
+    verifiedAadhaar: true,
+    isAvailable: true,
+    availabilityStatus: "Available Tomorrow",
+    isDemoProfile: true,
+    languages: ["Hindi", "Kannada"]
+  },
+  {
+    id: "worker-demo-4",
+    name: "Vikram Singh",
+    tradeTitle: "Licensed Electrician & Wireman",
+    phone: "+91 97410 88990",
+    role: "worker",
+    avatar: IMAGES.workers.vikramSingh,
+    locality: "Electronic City, Bengaluru",
+    skills: ["Conduit Wiring", "MCB Distribution", "Earthing", "Lighting Installation"],
+    experienceYears: 5,
+    expectedDailyWage: 850,
+    rating: 4.9,
+    completedJobsCount: 56,
+    bio: "ITI certified electrician with deep experience in commercial showrooms, apartments, and fault troubleshooting.",
+    verifiedAadhaar: true,
+    isAvailable: true,
+    availabilityStatus: "Available Today",
+    isDemoProfile: true,
+    languages: ["Hindi", "English"]
+  },
+  {
+    id: "worker-demo-5",
+    name: "Imran Khan",
+    tradeTitle: "Heavy Loading & Commercial Driver",
+    phone: "+91 96200 44551",
+    role: "worker",
+    avatar: IMAGES.workers.imranKhan,
+    locality: "Yeshwanthpur, Bengaluru",
+    skills: ["Heavy Lifting", "Loading & Unloading", "Mini Truck Driving", "Stock Handling"],
+    experienceYears: 4,
+    expectedDailyWage: 700,
+    rating: 4.8,
+    completedJobsCount: 68,
+    bio: "Physically fit warehouse goods handler with valid commercial driving license. Punctual for early morning shifts.",
+    verifiedAadhaar: true,
+    isAvailable: true,
+    availabilityStatus: "Available Today",
+    isDemoProfile: true,
+    languages: ["Hindi", "Kannada", "Urdu"]
+  },
+  {
+    id: "worker-demo-6",
+    name: "Laxmi Gowda",
+    tradeTitle: "Landscape Gardener & Agricultural Labour",
+    phone: "+91 94810 55223",
+    role: "worker",
+    avatar: IMAGES.workers.laxmiGowda,
+    locality: "HSR Layout, Bengaluru",
+    skills: ["Lawn Mowing", "Tree Pruning", "Soil Preparation", "Organic Composting"],
+    experienceYears: 3,
+    expectedDailyWage: 600,
+    rating: 4.9,
+    completedJobsCount: 31,
+    bio: "Passionate about gardening and greenery maintenance. Expert in villa lawns, hedge cutting, and seasonal flowering plants.",
+    verifiedAadhaar: true,
+    isAvailable: true,
+    availabilityStatus: "Available Today",
+    isDemoProfile: true,
+    languages: ["Kannada", "Telugu"]
   }
 ];
 
 export const sampleEmployers = [
   {
     id: "employer-demo-1",
-    name: "Sharma Builders & Civil Works (Demo Employer)",
+    name: "Sharma Infrastructure & Projects",
     contactPerson: "Rajesh Sharma",
+    avatar: IMAGES.employers.rajeshSharma,
     phone: "+91 98450 12345",
     role: "employer",
     companyName: "Sharma Infrastructure & Projects",
@@ -275,9 +372,61 @@ export const sampleEmployers = [
     location: "Koramangala 4th Block, Bengaluru",
     isVerified: true,
     gstRegistered: true,
-    rating: 4.7,
+    rating: 4.8,
     activeJobsCount: 3,
-    about: "Licensed residential and commercial building contractor running civil engineering projects across Bengaluru."
+    workersHiredCount: 120,
+    about: "Licensed residential and commercial building contractor running civil engineering projects across Bengaluru with 100% on-time daily wage settlement."
+  },
+  {
+    id: "employer-demo-2",
+    name: "Apex Home Renovation Co.",
+    contactPerson: "Anand Kumar",
+    avatar: IMAGES.employers.anandKumar,
+    phone: "+91 98765 43210",
+    role: "employer",
+    companyName: "Apex Home Renovation Co.",
+    businessType: "Interior Design & Painting Contractor",
+    location: "Indiranagar, Bengaluru",
+    isVerified: true,
+    gstRegistered: true,
+    rating: 4.9,
+    activeJobsCount: 2,
+    workersHiredCount: 85,
+    about: "Premium interior renovation and painting company. We ensure safety helmets, masks, and on-time evening UPI payouts for all site workers."
+  },
+  {
+    id: "employer-demo-3",
+    name: "GreenScape Estate & Nursery",
+    contactPerson: "Priya Deshmukh",
+    avatar: IMAGES.employers.priyaDeshmukh,
+    phone: "+91 99000 44556",
+    role: "employer",
+    companyName: "GreenScape Estate & Nursery",
+    businessType: "Landscape Architecture & Gardening",
+    location: "HSR Layout, Bengaluru",
+    isVerified: true,
+    gstRegistered: true,
+    rating: 4.7,
+    activeJobsCount: 1,
+    workersHiredCount: 45,
+    about: "Maintaining residential gated communities and commercial campus gardens across South Bengaluru."
+  },
+  {
+    id: "employer-demo-4",
+    name: "SwiftLogistics Warehouse Hub",
+    contactPerson: "Suresh Reddy",
+    avatar: IMAGES.employers.sureshReddy,
+    phone: "+91 97401 55667",
+    role: "employer",
+    companyName: "SwiftLogistics Hub",
+    businessType: "Commercial Warehousing & Freight",
+    location: "Yeshwanthpur, Bengaluru",
+    isVerified: true,
+    gstRegistered: true,
+    rating: 4.8,
+    activeJobsCount: 2,
+    workersHiredCount: 210,
+    about: "FMCG parcel sorting and distribution terminal. We provide free hot lunch, drinking water, and daily cash settlements to loaders."
   }
 ];
 
@@ -289,8 +438,9 @@ export const sampleApplications = [
     employerId: "employer-demo-1",
     employerName: "Sharma Infrastructure & Projects",
     workerId: "worker-demo-1",
-    workerName: "Ramesh Kumar (Demo Worker)",
+    workerName: "Ramesh Kumar",
     workerPhone: "+91 98765 11223",
+    workerAvatar: IMAGES.workers.rameshKumar,
     workerSkills: ["Bricklaying", "Cement Plastering", "Foundation Work"],
     dailyWage: 850,
     status: "shortlisted", // applied, under_review, shortlisted, accepted, rejected
@@ -306,8 +456,9 @@ export const sampleApplications = [
     employerId: "emp-sample-1",
     employerName: "SwiftLogistics Hub",
     workerId: "worker-demo-1",
-    workerName: "Ramesh Kumar (Demo Worker)",
+    workerName: "Ramesh Kumar",
     workerPhone: "+91 98765 11223",
+    workerAvatar: IMAGES.workers.rameshKumar,
     workerSkills: ["Heavy Lifting", "Loading & Unloading"],
     dailyWage: 650,
     status: "accepted",
@@ -333,4 +484,3 @@ export const sampleReports = [
     reportedAt: new Date(Date.now() - 3600000 * 18).toISOString()
   }
 ];
-

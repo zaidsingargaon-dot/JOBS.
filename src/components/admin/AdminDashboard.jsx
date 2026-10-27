@@ -19,6 +19,7 @@ import {
 import { useJobs } from "../../context/JobContext";
 import { useAuth } from "../../context/AuthContext";
 import { isFirebaseConfigured } from "../../services/firebase";
+import { IMAGES, handleImageError } from "../../services/images";
 
 export const AdminDashboard = ({ onOpenDetail }) => {
   const { 

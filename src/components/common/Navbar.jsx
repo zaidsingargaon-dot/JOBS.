@@ -19,6 +19,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useLanguage } from "../../context/LanguageContext";
 import { useJobs } from "../../context/JobContext";
 import { NotificationDropdown } from "./NotificationDropdown";
+import { handleImageError } from "../../services/images";
 
 export const Navbar = ({ 
   activeTab, 
@@ -215,15 +216,24 @@ export const Navbar = ({
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                   className="flex items-center gap-2 pl-2 pr-3 py-1.5 bg-slate-100 hover:bg-slate-200/80 rounded-2xl border border-slate-200 transition-colors"
                 >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs text-white ${
-                    currentUser.role === "worker"
-                      ? "bg-emerald-600"
-                      : currentUser.role === "employer"
-                      ? "bg-brand-600"
-                      : "bg-purple-600"
-                  }`}>
-                    {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : "U"}
-                  </div>
+                  {currentUser.avatar ? (
+                    <img
+                      src={currentUser.avatar}
+                      alt={currentUser.name}
+                      className="w-8 h-8 rounded-full object-cover border border-emerald-500 shadow-xs shrink-0"
+                      onError={handleImageError}
+                    />
+                  ) : (
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs text-white ${
+                      currentUser.role === "worker"
+                        ? "bg-emerald-600"
+                        : currentUser.role === "employer"
+                        ? "bg-brand-600"
+                        : "bg-purple-600"
+                    }`}>
+                      {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : "U"}
+                    </div>
+                  )}
                   <div className="hidden sm:block text-left">
                     <p className="text-xs font-bold text-slate-800 leading-tight max-w-[120px] truncate">
                       {currentUser.name}

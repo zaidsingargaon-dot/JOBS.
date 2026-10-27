@@ -4,6 +4,8 @@ import { Footer } from "./components/common/Footer";
 import { HeroSection } from "./components/landing/HeroSection";
 import { CategoryGrid } from "./components/landing/CategoryGrid";
 import { HowItWorks } from "./components/landing/HowItWorks";
+import { WorkerShowcase } from "./components/landing/WorkerShowcase";
+import { EmployerShowcase } from "./components/landing/EmployerShowcase";
 import { DailyWageCalculator } from "./components/landing/DailyWageCalculator";
 import { TrustAndSafety } from "./components/landing/TrustAndSafety";
 import { JobCard } from "./components/jobs/JobCard";
@@ -179,6 +181,10 @@ export function App() {
             />
 
             <HowItWorks openAuthModal={handleOpenAuth} />
+
+            <WorkerShowcase openAuthModal={handleOpenAuth} />
+
+            <EmployerShowcase />
 
             <DailyWageCalculator />
 
